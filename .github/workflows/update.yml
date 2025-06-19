@@ -2,7 +2,7 @@ name: Auto Naukri Resume Update
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Daily at 7:30 AM IST
+    - cron: '0 2 * * *'  # Runs daily at 7:30 AM IST
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,8 @@ jobs:
         pip install selenium
         sudo apt-get update
         sudo apt-get install -y chromium-chromedriver
-        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+        # ✅ Fix: ignore error if symlink already exists
+        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver || true
 
     - name: Run script
       env:
